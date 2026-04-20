@@ -1220,27 +1220,38 @@ function groupByRank(hand) {
 }
 
 function updateStageSize() {
-  const compact = window.innerWidth < 620 || window.innerHeight < 620;
+  const viewport = window.visualViewport;
+  const viewportWidth = viewport ? viewport.width : window.innerWidth;
+  const viewportHeight = viewport ? viewport.height : window.innerHeight;
+  const compact = viewportWidth < 620 || viewportHeight < 620;
   stage.dataset.size = compact ? "compact" : "full";
   const base = compact ? { w: 380, h: 456 } : { w: 788, h: 492 };
   stage.style.setProperty("--stage-w", `${base.w}px`);
   stage.style.setProperty("--stage-h", `${base.h}px`);
-  const scale = Math.min(
-    (window.innerWidth - 24) / base.w,
-    (window.innerHeight - 24) / base.h,
-    1
-  );
+
+  const horizontalPadding = compact ? 16 : 24;
+  const verticalPadding = compact ? 12 : 24;
+  const widthScale = (viewportWidth - horizontalPadding) / base.w;
+  const heightScale = (viewportHeight - verticalPadding) / base.h;
+  const scale = compact
+    ? Math.min(widthScale, 1)
+    : Math.min(widthScale, heightScale, 1);
+
   stage.style.transform = `scale(${scale})`;
   stageShell.style.width = `${base.w * scale}px`;
   stageShell.style.height = `${base.h * scale}px`;
   if (typeGallery) {
-    typeGallery.style.width = `${base.w * scale}px`;
+    const galleryWidth = Math.min(base.w * scale, viewportWidth - horizontalPadding);
+    typeGallery.style.width = `${galleryWidth}px`;
   }
 }
 
 function setup() {
   updateStageSize();
   window.addEventListener("resize", updateStageSize);
+  if (window.visualViewport) {
+    window.visualViewport.addEventListener("resize", updateStageSize);
+  }
 
   resetRound();
   renderTypeShowcase();

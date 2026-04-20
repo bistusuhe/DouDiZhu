@@ -23,10 +23,12 @@ body {
   color: var(--text);
   background: radial-gradient(circle at 20% 20%, #f2f6ff, #eef2ff 55%, #f8f8f8);
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 .page {
   min-height: 100vh;
+  width: 100%;
   padding: 18px 16px 24px;
   display: flex;
   flex-direction: column;
@@ -492,6 +494,7 @@ body {
   border: none;
   border-radius: 10px;
   padding: 6px 14px;
+  min-height: 40px;
   font-size: 12px;
   cursor: pointer;
   transition: transform 0.15s ease, box-shadow 0.15s ease;
@@ -632,6 +635,8 @@ body {
 
 .start-panel {
   width: min(600px, 92vw);
+  max-height: min(760px, calc(100dvh - 28px));
+  overflow-y: auto;
   background: rgba(255, 255, 255, 0.98);
   border-radius: 18px;
   padding: 18px 18px 16px;
@@ -858,6 +863,91 @@ body {
   }
 }
 
+@media (hover: none) and (pointer: coarse) {
+  .btn:not(:disabled):hover {
+    transform: none;
+  }
+
+  .card:hover {
+    transform: none;
+  }
+
+  .card.selected:hover {
+    transform: translateY(-20px);
+  }
+
+  .type-card:hover:not(.is-active) {
+    filter: none;
+  }
+}
+
+@media (max-width: 760px) {
+  .page {
+    padding: 12px 10px 20px;
+    gap: 10px;
+  }
+
+  .page-header {
+    width: 100%;
+    gap: 6px;
+  }
+
+  .title-block h1 {
+    font-size: 24px;
+    line-height: 1.28;
+  }
+
+  .title-block p {
+    font-size: 13px;
+  }
+
+  .stage-wrap {
+    padding: 2px 0 4px;
+  }
+
+  .controls {
+    width: 100%;
+    gap: 6px;
+  }
+
+  .controls .btn {
+    flex: 1 1 calc(33.33% - 6px);
+    min-width: 92px;
+  }
+
+  .validation-text {
+    padding: 0 6px;
+  }
+
+  .toast {
+    bottom: 14px;
+    min-width: min(340px, 92vw);
+    max-width: 92vw;
+    padding: 9px 38px 9px 12px;
+  }
+
+  .modal-card {
+    width: min(360px, 92vw);
+    padding: 16px 14px;
+  }
+
+  .start-overlay {
+    align-items: flex-start;
+    padding: 10px 8px;
+    overflow-y: auto;
+  }
+
+  .start-panel {
+    width: min(94vw, 560px);
+    max-height: calc(100dvh - 20px);
+    border-radius: 14px;
+  }
+
+  .start-actions .btn {
+    flex: 1 1 124px;
+  }
+}
+
 @media (max-width: 520px) {
   .page-header {
     flex-direction: column;
@@ -866,6 +956,10 @@ body {
 
   .title-block h1 {
     font-size: 22px;
+  }
+
+  .title-block p {
+    font-size: 12px;
   }
 
   .type-grid {
@@ -895,6 +989,27 @@ body {
 
   .mini-suit {
     font-size: 12px;
+  }
+
+  .controls .btn {
+    flex: 1 1 calc(50% - 6px);
+  }
+
+  .controls .btn:last-child {
+    flex-basis: 100%;
+  }
+
+  .toast {
+    bottom: 10px;
+    padding: 8px 34px 8px 10px;
+  }
+
+  .modal-actions {
+    flex-direction: column;
+  }
+
+  .modal-actions .btn {
+    width: 100%;
   }
 
   .landlord-zone {
