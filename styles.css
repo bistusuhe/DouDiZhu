@@ -533,13 +533,13 @@ body {
   left: 50%;
   bottom: 28px;
   transform: translateX(-50%);
-  background: rgba(255, 255, 255, 0.96);
-  color: var(--text);
-  border-radius: 14px;
-  padding: 10px 42px 10px 14px;
-  min-width: 240px;
+  background: linear-gradient(150deg, #2f6bff, #2357dc 62%, #1a44b6);
+  color: #f4f7ff;
+  border-radius: 16px;
+  padding: 12px 46px 12px 16px;
+  min-width: 260px;
   max-width: min(420px, 90vw);
-  box-shadow: 0 16px 32px rgba(30, 31, 36, 0.2);
+  box-shadow: 0 16px 32px rgba(20, 38, 95, 0.35);
   opacity: 0;
   pointer-events: none;
   z-index: 9999;
@@ -553,25 +553,26 @@ body {
 }
 
 .toast-title {
-  font-size: 13px;
+  font-size: 14px;
   font-weight: 700;
-  color: var(--primary);
+  color: #ffffff;
 }
 
 .toast-body {
-  font-size: 12px;
-  color: var(--text-secondary);
+  font-size: 13px;
+  line-height: 1.45;
+  color: rgba(244, 247, 255, 0.92);
   margin-top: 4px;
 }
 
 .toast-close {
   position: absolute;
-  top: 6px;
-  right: 8px;
+  top: 7px;
+  right: 10px;
   border: none;
   background: transparent;
-  font-size: 16px;
-  color: var(--text-secondary);
+  font-size: 18px;
+  color: rgba(244, 247, 255, 0.9);
   cursor: pointer;
 }
 
@@ -921,9 +922,9 @@ body {
 
   .toast {
     bottom: 14px;
-    min-width: min(340px, 92vw);
-    max-width: 92vw;
-    padding: 9px 38px 9px 12px;
+    min-width: min(350px, 94vw);
+    max-width: 94vw;
+    padding: 11px 42px 11px 14px;
   }
 
   .modal-card {
@@ -951,7 +952,8 @@ body {
 @media (max-width: 520px) {
   .page-header {
     flex-direction: column;
-    align-items: flex-start;
+    align-items: center;
+    text-align: center;
   }
 
   .title-block h1 {
@@ -1001,7 +1003,16 @@ body {
 
   .toast {
     bottom: 10px;
-    padding: 8px 34px 8px 10px;
+    min-width: min(340px, 94vw);
+    padding: 10px 38px 10px 12px;
+  }
+
+  .toast-title {
+    font-size: 14px;
+  }
+
+  .toast-body {
+    font-size: 13px;
   }
 
   .modal-actions {
