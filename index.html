@@ -1,0 +1,126 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>斗地主规则模拟对局</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="page">
+      <header class="page-header">
+        <div class="title-block">
+          <span class="eyebrow">互动规则介绍</span>
+          <h1>斗地主规则 · 模拟对局学习</h1>
+          <p>通过模拟牌桌对局，逐步认识单张、对子、三带一等核心规则。</p>
+        </div>
+      </header>
+
+      <div class="stage-wrap">
+        <div class="stage-shell" id="stage-shell">
+          <div class="stage" id="stage" data-size="full">
+            <div class="landlord-zone" aria-label="地主底牌区域">
+              <div class="landlord-title">地主底牌</div>
+              <div class="landlord-cards" id="landlord-cards"></div>
+            </div>
+            <div class="table">
+              <div class="row row-middle">
+                <div class="center-play">
+                  <div class="play-area">
+                    <div class="play-stack">
+                      <div class="opponent-hint" id="opponent-hint">
+                        <div class="opponent-title" id="opponent-title">上家出牌</div>
+                        <div class="opponent-desc" id="opponent-desc">等待上家出牌</div>
+                      </div>
+                      <div class="card-row" id="last-play"></div>
+                      <div class="play-empty" id="last-play-empty">等待上家出牌</div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row row-bottom">
+                <div class="hand-panel">
+                  <div class="hand-cards card-row" id="hand-cards"></div>
+                  <div class="controls">
+                    <button class="btn primary" id="play-btn" disabled>出牌</button>
+                    <button class="btn primary" id="pass-btn" disabled>过牌</button>
+                    <button class="btn primary" id="hint-btn" disabled>提示</button>
+                  </div>
+                  <div class="validation-text" id="validation-text">请先观察上家出牌。</div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <section class="type-gallery" aria-label="牌型介绍">
+        <div class="gallery-head">
+          <h2>牌型介绍与示例</h2>
+          <p>点击任意卡片可翻面查看详细规则。</p>
+        </div>
+        <div class="type-grid" id="type-grid"></div>
+      </section>
+
+      <div class="toast" id="type-toast" aria-live="polite">
+        <div class="toast-title" id="toast-title">牌型说明</div>
+        <div class="toast-body" id="toast-body">说明内容</div>
+        <button class="toast-close" id="toast-close" aria-label="关闭">×</button>
+      </div>
+
+      <div class="modal" id="end-modal" aria-hidden="true">
+        <div class="modal-backdrop"></div>
+        <div class="modal-card">
+          <div class="modal-title">暂无可压牌型</div>
+          <div class="modal-desc">你的手牌无法压住上家出牌，是否再来一局？</div>
+          <div class="modal-actions">
+            <button class="btn primary" id="restart-btn">再来一局</button>
+            <button class="btn ghost" id="end-btn">结束体验</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="start-overlay show" id="start-overlay" aria-hidden="false">
+      <div class="start-panel">
+        <div class="start-step" id="start-step-intro">
+          <h2>开始前规则提示</h2>
+          <p class="start-subtitle">先了解胜利条件，再进入叫地主环节。</p>
+          <div class="role-grid">
+            <div class="role-card">
+              <h3>地主目标</h3>
+              <p>先出完自己手牌即获胜，且可利用底牌强化牌力。</p>
+            </div>
+            <div class="role-card">
+              <h3>农民目标</h3>
+              <p>任意一位农民先出完手牌即可获胜，强调配合压制地主。</p>
+            </div>
+            <div class="role-card">
+              <h3>地主策略</h3>
+              <p>优先控场：用大牌抢回合，关键时机用炸弹终结对手。</p>
+            </div>
+            <div class="role-card">
+              <h3>农民策略</h3>
+              <p>保留关键牌型，减少互压，尽量把回合让给更容易走牌的一方。</p>
+            </div>
+          </div>
+          <div class="start-actions">
+            <button class="btn primary" id="intro-start-btn">开始体验</button>
+          </div>
+        </div>
+
+        <div class="start-step hidden" id="start-step-call">
+          <h2>是否叫地主？</h2>
+          <p class="start-subtitle">叫地主后，左侧三张地主牌将翻开并加入你的手牌。</p>
+          <div class="start-actions">
+            <button class="btn primary" id="call-landlord-btn">叫地主</button>
+            <button class="btn ghost" id="pass-landlord-btn">不叫地主</button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <script src="script.js"></script>
+  </body>
+</html>
